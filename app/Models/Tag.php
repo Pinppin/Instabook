@@ -12,7 +12,7 @@ class Tag extends Model
     /**
      * Renvoie les photos associées a un tag.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function photos(){
         return $this->belongsToMany(Photo::class)->using(PhotoTag::class)->withPivot("id")->withTimestamps();

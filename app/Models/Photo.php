@@ -12,7 +12,7 @@ class Photo extends Model
     /**
      * Renvoie les commentaires asssociés à une photo.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function comments() {
         return $this->hasMany(Comment::class);
@@ -40,7 +40,7 @@ class Photo extends Model
     /**
      * Renvoie la collection de tag d'une photo.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function tags() {
         return $this->belongsToMany(Tag::class)->using(PhotoTag::class)->withPivot("id")->withTimestamps();
@@ -49,7 +49,7 @@ class Photo extends Model
     /**
      * Renvoie les utilisateurs associés à la photo.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function users(){
         return $this->belongsToMany(User::class)->using(PhotoUser::class)->withPivot("id")->withTimestamps();

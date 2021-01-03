@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class GroupUser extends Pivot
 {
     use HasFactory;
+    public $incrementing = true;
 
     
 }

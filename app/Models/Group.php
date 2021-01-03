@@ -12,7 +12,7 @@ class Group extends Model
     /**
      * Renvoie la collection de photo associé au groupe.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function photos() {
         return $this->hasMany(Photo::class);
@@ -21,7 +21,7 @@ class Group extends Model
     /**
      * Renvoie les utilisateurs appartennant au groupe.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function users() {
         return $this->belongsToMany(User::class)->using(GroupUser::class)->withPivot("id")->withTimestamps();
