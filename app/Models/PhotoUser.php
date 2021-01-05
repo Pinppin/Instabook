@@ -10,10 +10,21 @@ class PhotoUser extends Pivot
     use HasFactory;
     public $incrementing = true;
 
-  //  protected static function booted() {
-        // Si on renvoi faux dans cette fonction, la création n'est pas effectuée, sinon elle est effectuée
-  //    static::creating(function ($photo_user) {
-  //        return !is_null($photo_user->photo->group->users->find($photo_user->user_id));
-  //    });
-  //}
+    public function photo() {
+      return $this->belongsTo(Photo::class);
+  }
+
+    public function user() {
+    return $this->belongsTo(User::class);
+  }
+
+
+
+
+    protected static function booted() {
+         //Si on renvoi faux dans cette fonction, la création n'est pas effectuée, sinon elle est effectuée
+      static::creating(function ($photo_user) {
+          return !is_null($photo_user->photo->group->users->find($photo_user->user));
+      });
+  }
 }
